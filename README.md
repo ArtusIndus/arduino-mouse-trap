@@ -87,7 +87,7 @@ in EEPROM addresses:
 ---
 
 ## Important Notes
-- EEPROM is cleared on every startup in this version.
+- EEPROM is cleared on every startup in this version. Connect your Arduino before restarting the program.
 - Sensor alignment (LED ↔ phototransistor) is critical.
 - Ambient light may affect readings.
 - Servo positions:
@@ -101,7 +101,6 @@ in EEPROM addresses:
 - Shield sensor from ambient light
 - Add adjustable threshold (potentiometer)
 - Add wireless notification (ESP8266 / ESP32)
-- Add enclosure for stability
 
 ---
 

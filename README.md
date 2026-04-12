@@ -12,7 +12,7 @@ The system also records how long it has been running before activation using EEP
 ## Features
 - Light-based detection using LED and phototransistor
 - Fast servo-triggered trap mechanism
-- LED used as light source for detection
+- LED used as a light source for detection
 - Time tracking (days, hours, minutes)
 - EEPROM storage
 
@@ -28,7 +28,7 @@ The system also records how long it has been running before activation using EEP
 
 ---
 
-## Bait (Important)
+## Bait
 
 To make the trap effective, bait is required to attract the mouse.
 

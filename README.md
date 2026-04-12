@@ -1,11 +1,11 @@
 # Arduino Mouse Trap
 
 ## Overview
-This project is a simple automated mouse trap using an Arduino and a servo motor.
+This project is a simple automated mouse trap using an Arduino board and a servo motor.
 
-A phototransistor and an LED are used together as a light-based detection system. When a mouse interrupts the light reaching the sensor, the trap is triggered instantly.
+A phototransistor and an LED form a simple light-based detection system. When a mouse interrupts the light beam, the trap is triggered instantly.
 
-The system also records how long it has been running before activation using EEPROM.
+The system also records how long the system runs before activation using EEPROM.
 
 ---
 
@@ -28,7 +28,7 @@ The system also records how long it has been running before activation using EEP
 
 ---
 
-## Bait
+## Bait (Important)
 
 To make the trap effective, bait is required to attract the mouse.
 
@@ -54,7 +54,7 @@ Make sure the mouse interrupts the light beam between the LED and phototransisto
    - Triggers the servo (trap closes)
    - Turns off the LED
    - Calculates runtime
-   - Stores time in EEPROM
+   - Stores the time in EEPROM
 
 ---
 
@@ -66,7 +66,7 @@ The system works by measuring light intensity:
 Threshold in code:
 
 ```cpp
-while(analogRead(sensor)>30){} // try which value is good. 30 was good for me.
+while (analogRead(sensor) > 30) {} // Adjust this value for your setup; 30 worked well for me.
 ```
 
 This value may need calibration depending on your setup and environment.

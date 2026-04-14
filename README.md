@@ -7,7 +7,7 @@ A phototransistor and an LED form a simple light-based detection system. When a 
 
 The system also records how long the system runs before activation using EEPROM.
 
-You can find an instruction [here](https://www.instructables.com/How-to-Build-an-Arduino-Mouse-Trap-Simple-Effectiv/.)
+You can find a Construction manual [here](https://www.instructables.com/How-to-Build-an-Arduino-Mouse-Trap-Simple-Effectiv/.)
 
 ---
 

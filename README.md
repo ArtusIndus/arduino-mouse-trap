@@ -1,10 +1,10 @@
 # Arduino Mouse Trap
 
 ## Overview
+
 This project is a simple automated mouse trap using an Arduino board and a servo motor.
-
-A phototransistor and an LED form a simple light-based detection system. When a mouse interrupts the light beam, the trap is triggered instantly.
-
+A phototransistor and an LED form a simple light-based detection system. 
+When a mouse interrupts the light beam, the trap is triggered instantly.
 The system also records how long the system runs before activation using EEPROM.
 
 You can find a Construction manual [here](https://www.instructables.com/How-to-Build-an-Arduino-Mouse-Trap-Simple-Effectiv/.)
@@ -12,11 +12,11 @@ You can find a Construction manual [here](https://www.instructables.com/How-to-B
 ---
 
 ## Features
-- Light-based detection using LED and phototransistor
-- Fast servo-triggered trap mechanism
-- LED used as a light source for detection
-- Time tracking (days, hours, minutes)
+- Light barrier detection (LED + phototransistor)
+- Fast servo-based trap mechanism
+- Runtime tracking (days, hours, minutes)
 - EEPROM storage
+- Simple and low-cost components
 
 ---
 
@@ -24,85 +24,85 @@ You can find a Construction manual [here](https://www.instructables.com/How-to-B
 - Arduino (e.g. Uno)
 - Servo motor
 - Phototransistor
-- LED (used as light source)
+- LED (light source)
 - Resistors
 - Jumper wires
+- Bait (very important)
 
 ---
 
-## Bait (Important)
-
-To make the trap effective, bait is required to attract the mouse.
-
-Common options:
-- Peanut butter (very effective)
+## Bait
+To attract mice, use:
+- Peanut butter (highly effective)
 - Chocolate
-- Nuts or seeds
+- Nuts / seeds
 - Bread
 
-The bait should be placed behind the sensor so the mouse has to pass through the detection area.
-
-Make sure the mouse interrupts the light beam between the LED and phototransistor.
+Place the bait behind the sensor so the mouse must cross the light beam.
 
 ---
 
 ## How It Works
-1. The LED continuously shines light onto the phototransistor.
-2. As long as the light reaches the sensor, the system stays idle.
-3. When a mouse passes between the LED and the phototransistor:
-   - The light is blocked
-   - The sensor value drops below a threshold
-4. The Arduino detects this change and:
-   - Triggers the servo (trap closes)
-   - Turns off the LED
-   - Calculates runtime
-   - Stores the time in EEPROM
+1. The LED continuously shines on the phototransistor  
+2. As long as light is detected, the system waits  
+3. When a mouse interrupts the beam:
+   - Light drops below the threshold
+   - Arduino detects the change
+   - Servo triggers the trap
+   - LED turns off
+   - Runtime is calculated
+   - Data is stored in EEPROM
 
 ---
 
 ## Detection Principle
-The system works by measuring light intensity:
-- High value → light reaches the phototransistor
-- Low value → light is blocked (trigger condition)
+The system measures light intensity:
+- High value: light reaches the phototransistor
+- Low value: light is blocked (trigger condition)
 
-Threshold in code:
-
-```cpp
-while (analogRead(sensor) > 30) {} // Adjust this value for your setup; 30 worked well for me.
-```
-
-This value may need calibration depending on your setup and environment.
+The threshold value must be calibrated depending on the setup and ambient light.
 
 ---
 
-## Data Storage
-The Arduino stores:
+## Data Storage (EEPROM)
+Runtime is stored using a structured format:
 - Days
 - Hours
 - Minutes
 
-in EEPROM addresses:
-- 0 → Days  
-- 1 → Hours  
-- 2 → Minutes  
+All values are saved starting at EEPROM address 0.
+
+---
+
+## Code Structure
+
+### Trap Logic (print.ino)
+Main program responsible for detection, triggering the trap, and saving runtime.
+
+### Read EEPROM (read.ino)
+Reads and prints stored runtime data via serial output.
+
+### Reset / Open Trap (open.ino)
+Moves the servo back to the open position.
 
 ---
 
 ## Important Notes
-- EEPROM is cleared on every startup in this version. Connect your Arduino before restarting the program.
-- Sensor alignment (LED ↔ phototransistor) is critical.
-- Ambient light may affect readings.
+- Sensor alignment between LED and phototransistor is critical
+- Ambient light can affect detection accuracy
 - Servo positions:
-  - `90°` = open
-  - `180°` = triggered
+  - 90° = open
+  - 180° = triggered
+- EEPROM is overwritten on each run
 
 ---
 
 ## Possible Improvements
-- Remove EEPROM reset on startup
+- Prevent EEPROM reset on startup
 - Shield sensor from ambient light
-- Add adjustable threshold (potentiometer)
+- Add adjustable threshold (e.g. potentiometer)
 - Add wireless notification (ESP8266 / ESP32)
+- Add battery operation
 
 ---
 
